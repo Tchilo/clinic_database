@@ -38,6 +38,17 @@ constraint invoice_id foreign key(invoice_id) references invoices(id),
 constraint treatment_id foreign key(treatment_id) references treatments(id)
 );
 
+CREATE TABLE medical_treatments (
+  medical_history_id INT,
+  treatment_id INT,
+  CONSTRAINT fk_medical_histories
+    FOREIGN KEY(medical_history_id)
+      REFERENCES medical_histories(id),
+  CONSTRAINT fk_treatments
+    FOREIGN KEY(treatment_id)
+      REFERENCES treatments(id)
+);
+
 CREATE INDEX patient_id ON medical_histories(patient_id);
 CREATE INDEX medical_history_id ON invoices(medical_history_id);
 CREATE INDEX invoice_id ON invoice_items(invoice_id);
